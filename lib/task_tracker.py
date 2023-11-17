@@ -54,3 +54,4 @@ class TaskTracker:
         #   nothing
         # Side effects
         #  marks all tasks as complete
+        pass
