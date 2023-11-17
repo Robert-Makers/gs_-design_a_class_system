@@ -22,7 +22,7 @@ So that I can keep track of my contacts
 I want to see a list of all of the mobile phone numbers in all my diary entries
 
 ## Design the class system
-<img src='../design_a_class_system/assets/class_design.png' height=400>
+<img src='assets/class_design.png' height=400>
 
 ## Create examples as integration tests
 
