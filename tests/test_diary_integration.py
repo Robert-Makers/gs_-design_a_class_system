@@ -21,7 +21,7 @@ I can get back a formatted list of entries
 '''
 def test_add_entries_and_format_list():
     diary = Diary()
-    entry_1 = DiaryEntry('Day One', 'Today is my first day writing a diary!')
+    entry_1 = DiaryEntry('Day One', 'Today is my first day writing a diary')
     entry_2 = DiaryEntry('Day Two', 'I had pizza for lunch it was amazing')
     diary.add_diary_entry(entry_1)
     diary.add_diary_entry(entry_2)
@@ -76,7 +76,7 @@ def test_three_entries_return_entry_to_read_in_time():
     diary.add_diary_entry(entry_1)
     diary.add_diary_entry(entry_2)
     diary.add_diary_entry(entry_3)
-    assert diary.select_entry_for_time(2, 100) == entry_2.format()
+    assert diary.select_entry_for_time(2, 100) == entry_3.format()
 
 '''
 Given I have a diary

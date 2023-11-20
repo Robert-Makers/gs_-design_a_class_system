@@ -25,7 +25,7 @@ Given a diary entry with no contents
 Catch an error
 '''
 def test_error_if_no_title():
-    with pytest.rasies(Exception) as e:
+    with pytest.raises(Exception) as e:
         entry = DiaryEntry('Day One', '')
     assert str(e.value) == 'Diary entry must have a title and contents'
 
