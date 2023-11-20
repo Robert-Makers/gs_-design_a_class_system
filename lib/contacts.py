@@ -9,7 +9,7 @@ class Contacts():
         #   nothing
         # Side effects
         #   sets the contact list to empty
-        pass
+        self.contact_list = []
 
     def get_contact_list(self):
         # Parameters
@@ -18,4 +18,4 @@ class Contacts():
         #   list of contacts
         # Side effects
         #   none
-        pass
+        return self.contact_list
