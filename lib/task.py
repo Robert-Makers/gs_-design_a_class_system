@@ -4,6 +4,10 @@ class Task():
     #   complete: Bool
 
     def __init__(self, task):
+        if task == "":
+            raise Exception("Task string should not be empty")
+        self.text = task
+        self.complete = False
         # Parameters
         #   task: String
         #   complete: Bool
@@ -11,14 +15,13 @@ class Task():
         #   nothing
         # Side effects
         #   sets the task and complete properties
-        self.text = task
-        self.complete = False
+        
 
     def complete_task(self):
+        self.complete = True
         # Parameters
         #   none
         # Returns
         #   none
         # Side effects
         #   set complete to True
-        pass

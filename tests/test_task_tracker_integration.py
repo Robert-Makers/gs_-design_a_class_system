@@ -21,7 +21,7 @@ def test_add_and_complete_and_show_complete():
     task_tracker = TaskTracker()
     task_1 = Task("Walk the dog")
     task_tracker.add_task(task_1)
-    task_tracker.complete_task(task_1.task)
+    task_tracker.complete_task(task_1.text)
     assert task_tracker.get_complete() == ["Walk the dog"]
 
 
@@ -36,7 +36,7 @@ def test_add_and_complete_and_show_incomplete_and_complete():
     task_2 = Task("Washing")
     task_tracker.add_task(task_1)
     task_tracker.add_task(task_2)
-    task_tracker.complete_task(task_1.task)
+    task_tracker.complete_task(task_1.text)
     assert task_tracker.get_incomplete() == ["Washing"]
     assert task_tracker.get_complete() == ["Walk the dog"]
 
