@@ -15,7 +15,8 @@ class Diary():
         # Side effects
         #   sets the entries list to empty
         #   creates an instance of Contacts()
-        pass
+        self.entries = []
+        self.contacts = Contacts()
 
     def add_diary_entry(self, entry):
         # Parameters
@@ -25,7 +26,10 @@ class Diary():
         # Side effects
         #   adds a new entry to the list of entries
         #   if there is a phone number in the contents add it to contacts.contact_list
-        pass
+        if entry.get_phone_number() != None:
+            self.contacts.contact_list.append(entry.get_phone_number())
+        self.entries.append(entry)
+        
 
     def retrieve_entries(self):
         # Parameters
@@ -34,7 +38,7 @@ class Diary():
         #   a list of all entries formatted
         # Side effects
         #   none
-        pass
+        return [entry.format() for entry in self.entries]
 
     def select_entry_for_time(self, time, wpm):
         # Parameters
@@ -44,4 +48,8 @@ class Diary():
         #   a formatted diary entry that takes less time to read than the time available
         # Side effects
         #   none
-        pass
+        new_list = sorted([entry for entry in self.entries if entry.reading_time(wpm) <= time], key=lambda entry: entry.reading_time(wpm), reverse=True)
+
+        if new_list == []:
+            raise Exception("Not enough time to read any entries")
+        return new_list[0].format()

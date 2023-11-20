@@ -1,3 +1,5 @@
+import math
+
 class DiaryEntry():
     # User facing properties:
     # title: string
@@ -12,7 +14,11 @@ class DiaryEntry():
         #   nothing
         # Side effects
         #   sets the title and contents properties
-        pass
+        if title == '' or contents == '':
+            raise Exception('Diary entry must have a title and contents')
+
+        self.title = title
+        self.contents = contents
 
     def format(self):
         # Parameters
@@ -21,7 +27,7 @@ class DiaryEntry():
         #   string with title and contents: title: contents
         # Side effects
         #   none
-        pass
+        return f'{self.title}: {self.contents}'
     
     def word_count(self):
         # Parameters
@@ -30,7 +36,7 @@ class DiaryEntry():
         #   number: total words in diary entry
         # Side effects
         #   none
-        pass
+        return len(self.contents.split(' '))
     
     def reading_time(self, wpm):
         # Parameters
@@ -40,7 +46,10 @@ class DiaryEntry():
         #   int: reading time in minutes (round up)
         # Side effects
         #   none
-        pass
+        word_count = self.word_count()
+        minutes = word_count / wpm
+        rounded =  math.ceil(minutes)
+        return rounded
 
     def get_phone_number(self):
         # Parameters
@@ -49,4 +58,13 @@ class DiaryEntry():
         #   Phone number (if exists)
         # Side effects
         #   none
-        pass
+        '''
+        search for '07' in contents
+        find char index
+        get characters[20:32]
+        '''
+        for (index, character) in enumerate(self.contents):
+            if character == '0' and self.contents[index+1] == '7':
+                number_string = self.contents[index:index+11]
+                if number_string.isnumeric():
+                    return number_string
