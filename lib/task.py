@@ -11,7 +11,7 @@ class Task():
         #   nothing
         # Side effects
         #   sets the task and complete properties
-        self.task = task
+        self.text = task
         self.complete = False
 
     def complete_task(self):
