@@ -59,3 +59,15 @@ def test_retrieve_entry_based_off_reading_time():
     diary.add_diary_entry(fake_entry_02)
     diary.add_diary_entry(fake_entry_01)
     assert diary.select_entry_for_time(1, 50) == 'Day Seven: Week two is going great, I love bootcamp!'
+
+'''
+Given I have a diary and add an entry containing a phone number
+I can see that number in my contacts list
+'''
+def test_get_number_from_entry():
+    diary = Diary()
+    fake_entry = Mock()
+    fake_entry.get_phone_number.return_value = '07123456789'
+    diary.add_diary_entry(fake_entry)
+    fake_entry.get_phone_number.assert_called()
+    assert diary.contacts.contact_list == ['07123456789']
