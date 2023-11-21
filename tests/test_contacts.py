@@ -1,4 +1,4 @@
-from lib.contacts import *
+from src.contacts import *
 
 '''
 Given I initialise Contacts

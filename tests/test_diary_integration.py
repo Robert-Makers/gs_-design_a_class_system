@@ -1,6 +1,7 @@
-from lib.diary_entry import *
-from lib.diary import *
-from lib.contacts import *
+
+from src.diary_entry import *
+from src.diary import *
+from src.contacts import *
 import pytest #type: ignore
 
 '''

@@ -1,5 +1,5 @@
 import pytest #type: ignore
-from lib.task import *
+from src.task import *
 
 """
 When creating a task, if task string is empty, raise an error

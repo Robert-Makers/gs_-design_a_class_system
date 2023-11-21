@@ -1,4 +1,4 @@
-from lib.diary import *
+from src.diary import *
 from unittest.mock import Mock
 
 '''

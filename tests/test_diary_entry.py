@@ -1,4 +1,4 @@
-from lib.diary_entry import *
+from src.diary_entry import *
 import pytest #type: ignore
 
 '''

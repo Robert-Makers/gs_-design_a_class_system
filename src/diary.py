@@ -1,5 +1,8 @@
-from lib.contacts import *
-from lib.diary_entry import *
+import sys
+sys.path.append('../')
+from src.contacts import Contacts
+# from src.contacts import Contacts
+from src.diary_entry import *
 
 class Diary():
     # user facing properties
@@ -26,6 +29,7 @@ class Diary():
         # Side effects
         #   adds a new entry to the list of entries
         #   if there is a phone number in the contents add it to contacts.contact_list
+        print('Add a new entry')
         if entry.get_phone_number() != None:
             self.contacts.contact_list.append(entry.get_phone_number())
         self.entries.append(entry)

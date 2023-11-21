@@ -1,5 +1,5 @@
-from lib.task import *
-from lib.task_tracker import *
+from src.task import *
+from src.task_tracker import *
 
 """
 Given a task tracker, when we add two tasks, we can see those tasks in the incomplete list
