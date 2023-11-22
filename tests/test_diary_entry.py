@@ -35,7 +35,7 @@ I can see the formatted entry
 '''
 def test_format_entry():
     entry = DiaryEntry('Day One', 'My first day of bootcamp')
-    assert entry.format() == 'Day One: My first day of bootcamp'
+    assert entry.format() == f'Day One:\nMy first day of bootcamp'
 
 '''
 Given a diary entry

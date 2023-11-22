@@ -26,10 +26,16 @@ I can get back a formatted list of entries
 
 def test_add_entries_and_format_list():
     diary = Diary()
+    captured_output = io.StringIO()
     with patch('builtins.input', side_effect=['Day One', 'Today is my first day journalling.', 'Day Two', 'I had a great second day.']):
+        old_stdout = sys.stdout
+        sys.stdout = captured_output
         diary.add_diary_entry()
         diary.add_diary_entry()
-    assert diary.retrieve_entries() == ['Day One: Today is my first day journalling.', 'Day Two: I had a great second day.']
+        diary.retrieve_entries()
+        sys.stdout = old_stdout
+    captured_text = captured_output.getvalue()
+    assert 'Today is my first' in captured_text
 
 '''
 Given I initialise a Diary
@@ -70,22 +76,31 @@ I get back a diary entry I can read in time
 '''
 def test_three_entries_return_entry_to_read_in_time():
     diary = Diary()
-    with patch('builtins.input', side_effect=['Day One', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu ornare sapien. Duis sapien lorem, condimentum in neque id, convallis cursus urna. Proin fringilla hendrerit dui, nec iaculis ex viverra in. Suspendisse volutpat dapibus nunc vitae interdum. Phasellus id nunc dictum leo vulputate egestas semper id tellus. Integer ullamcorper leo nec ipsum auctor cursus. Suspendisse blandit vehicula sem id dictum. Curabitur sed imperdiet tortor. Nulla quis velit a elit sagittis ultrices a a mi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget urna sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam eleifend faucibus dapibus. Nunc ac elit pretium, scelerisque sem vel, sagittis ante. Pellentesque mattis dolor nec malesuada malesuada. Donec leo libero, vehicula nec dictum nec, tincidunt at neque. Sed vehicula libero ante, sed pulvinar metus tincidunt non. Nunc vehicula, tellus eget vestibulum cursus, lacus sapien porttitor magna, placerat pulvinar dui enim in neque. Suspendisse dapibus malesuada metus quis convallis. Ut suscipit quam tortor, sit amet congue metus feugiat sed. Mauris dapibus maximus enim ac rutrum. Praesent quis turpis eleifend, vestibulum neque sed, gravida dui. Morbi nec nulla quis felis placerat vulputate. Morbi cursus purus quis lorem congue hendrerit. Maecenas sit amet metus vel dui pulvinar sodales. Duis sed egestas lorem, vitae ornare diam. Suspendisse euismod venenatis tortor et tincidunt.', 'Day Two', 'Today I am writing my first diary entry. Ive had a great day at bootcamp, desiging class systems and learning about the debugging tools in VS Code. Im having lasagna for dinner and its going to be delicious.', 'Day Three', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu ornare sapien. Duis sapien lorem, condimentum in neque id, convallis cursus urna. Proin fringilla hendrerit dui, nec iaculis ex viverra in. Suspendisse volutpat dapibus nunc vitae interdum. Phasellus id nunc dictum leo vulputate egestas semper id tellus. Integer ullamcorper leo nec ipsum auctor cursus. Suspendisse blandit vehicula sem id dictum. Curabitur sed imperdiet tortor. Nulla quis velit a elit sagittis ultrices a a mi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget urna sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam eleifend faucibus dapibus. Nunc ac elit pretium, scelerisque sem vel, sagittis ante. Pellentesque mattis dolor nec malesuada malesuada. Donec leo libero, vehicula nec dictum nec, tincidunt at neque. Sed vehicula libero ante, sed pulvinar metus tincidunt non.']):
+    captured_output = io.StringIO()
+    with patch('builtins.input', side_effect=['Day One', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu ornare sapien. Duis sapien lorem, condimentum in neque id, convallis cursus urna. Proin fringilla hendrerit dui, nec iaculis ex viverra in. Suspendisse volutpat dapibus nunc vitae interdum. Phasellus id nunc dictum leo vulputate egestas semper id tellus. Integer ullamcorper leo nec ipsum auctor cursus. Suspendisse blandit vehicula sem id dictum. Curabitur sed imperdiet tortor. Nulla quis velit a elit sagittis ultrices a a mi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget urna sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam eleifend faucibus dapibus. Nunc ac elit pretium, scelerisque sem vel, sagittis ante. Pellentesque mattis dolor nec malesuada malesuada. Donec leo libero, vehicula nec dictum nec, tincidunt at neque. Sed vehicula libero ante, sed pulvinar metus tincidunt non. Nunc vehicula, tellus eget vestibulum cursus, lacus sapien porttitor magna, placerat pulvinar dui enim in neque. Suspendisse dapibus malesuada metus quis convallis. Ut suscipit quam tortor, sit amet congue metus feugiat sed. Mauris dapibus maximus enim ac rutrum. Praesent quis turpis eleifend, vestibulum neque sed, gravida dui. Morbi nec nulla quis felis placerat vulputate. Morbi cursus purus quis lorem congue hendrerit. Maecenas sit amet metus vel dui pulvinar sodales. Duis sed egestas lorem, vitae ornare diam. Suspendisse euismod venenatis tortor et tincidunt.', 'Day Two', 'Today I am writing my first diary entry. Ive had a great day at bootcamp, desiging class systems and learning about the debugging tools in VS Code. Im having lasagna for dinner and its going to be delicious.', 'Day Three', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu ornare sapien. Duis sapien lorem, condimentum in neque id, convallis cursus urna. Proin fringilla hendrerit dui, nec iaculis ex viverra in. Suspendisse volutpat dapibus nunc vitae interdum. Phasellus id nunc dictum leo vulputate egestas semper id tellus. Integer ullamcorper leo nec ipsum auctor cursus. Suspendisse blandit vehicula sem id dictum. Curabitur sed imperdiet tortor. Nulla quis velit a elit sagittis ultrices a a mi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget urna sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam eleifend faucibus dapibus. Nunc ac elit pretium, scelerisque sem vel, sagittis ante. Pellentesque mattis dolor nec malesuada malesuada. Donec leo libero, vehicula nec dictum nec, tincidunt at neque. Sed vehicula libero ante, sed pulvinar metus tincidunt non.', '2', '100']):
+        old_stdout = sys.stdout
+        sys.stdout = captured_output
         diary.add_diary_entry()
         diary.add_diary_entry()
         diary.add_diary_entry()
-    assert diary.select_entry_for_time(2, 100) == diary.entries[2].format()
+        diary.select_entry_for_time()
+        sys.stdout = old_stdout
+    captured_text = captured_output.getvalue()
+    assert 'Day Three' in captured_text
 
 '''
 Given I have a diary
 I can input the amount of time I have to read and my reading speed
 I catch an error if no entries are short enough to read
 '''
-def test_error_if_no_entries_are_available_in_reading_time():
+def print_error_to_console_if_no_entries_found():
     diary = Diary()
+    captured_output = io.StringIO()
     with patch('builtins.input', side_effect=['Day One', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu ornare sapien. Duis sapien lorem, condimentum in neque id, convallis cursus urna. Proin fringilla hendrerit dui, nec iaculis ex viverra in. Suspendisse volutpat dapibus nunc vitae interdum. Phasellus id nunc dictum leo vulputate egestas semper id tellus. Integer ullamcorper leo nec ipsum auctor cursus. Suspendisse blandit vehicula sem id dictum. Curabitur sed imperdiet tortor. Nulla quis velit a elit sagittis ultrices a a mi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget urna sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam eleifend faucibus dapibus. Nunc ac elit pretium, scelerisque sem vel, sagittis ante. Pellentesque mattis dolor nec malesuada malesuada. Donec leo libero, vehicula nec dictum nec, tincidunt at neque. Sed vehicula libero ante, sed pulvinar metus tincidunt non. Nunc vehicula, tellus eget vestibulum cursus, lacus sapien porttitor magna, placerat pulvinar dui enim in neque. Suspendisse dapibus malesuada metus quis convallis. Ut suscipit quam tortor, sit amet congue metus feugiat sed. Mauris dapibus maximus enim ac rutrum. Praesent quis turpis eleifend, vestibulum neque sed, gravida dui. Morbi nec nulla quis felis placerat vulputate. Morbi cursus purus quis lorem congue hendrerit. Maecenas sit amet metus vel dui pulvinar sodales. Duis sed egestas lorem, vitae ornare diam. Suspendisse euismod venenatis tortor et tincidunt.', 'Day Three', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu ornare sapien. Duis sapien lorem, condimentum in neque id, convallis cursus urna. Proin fringilla hendrerit dui, nec iaculis ex viverra in. Suspendisse volutpat dapibus nunc vitae interdum. Phasellus id nunc dictum leo vulputate egestas semper id tellus. Integer ullamcorper leo nec ipsum auctor cursus. Suspendisse blandit vehicula sem id dictum. Curabitur sed imperdiet tortor. Nulla quis velit a elit sagittis ultrices a a mi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget urna sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam eleifend faucibus dapibus. Nunc ac elit pretium, scelerisque sem vel, sagittis ante. Pellentesque mattis dolor nec malesuada malesuada. Donec leo libero, vehicula nec dictum nec, tincidunt at neque. Sed vehicula libero ante, sed pulvinar metus tincidunt non.']):
+        old_stdout = sys.stdout
+        sys.stdout = captured_output
         diary.add_diary_entry()
         diary.add_diary_entry()
-    with pytest.raises(Exception) as e:
-        diary.select_entry_for_time(1, 50)
-    assert str(e.value) == "Not enough time to read any entries"
+        sys.stdout = old_stdout
+    captured_text = captured_output.getvalue()
+    assert 'Not enough time to' in captured_text

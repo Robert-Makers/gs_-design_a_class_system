@@ -16,7 +16,7 @@ Retrieve entries returns an empty list
 
 def test_retrieve_returns_empty():
     diary = Diary()
-    assert diary.retrieve_entries() == []
+    assert diary.retrieve_entries() == None
 
 # '''
 # Given I have a diary

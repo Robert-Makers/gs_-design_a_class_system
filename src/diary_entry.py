@@ -27,7 +27,7 @@ class DiaryEntry():
         #   string with title and contents: title: contents
         # Side effects
         #   none
-        return f'{self.title}: {self.contents}'
+        return f'{self.title}:\n{self.contents}'
     
     def word_count(self):
         # Parameters

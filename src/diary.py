@@ -31,7 +31,6 @@ class Diary():
         #   if there is a phone number in the contents add it to contacts.contact_list
         title = input('Whats the title of this entry?')
         contents = input('Start writing your diary.')
-
         entry = DiaryEntry(title, contents)
         if entry.get_phone_number() != None:
             self.contacts.contact_list.append(entry.get_phone_number())
@@ -45,18 +44,22 @@ class Diary():
         #   a list of all entries formatted
         # Side effects
         #   none
-        return [entry.format() for entry in self.entries]
+        entries = '\n\n'.join([entry.format() for entry in self.entries])
+        print(entries)
 
-    def select_entry_for_time(self, time, wpm):
+    def select_entry_for_time(self):
         # Parameters
         #   time: Int the time in minutes available for reading
         #   wpm: Int words per minute
         # Returns
         #   a formatted diary entry that takes less time to read than the time available
         # Side effects
-        #   none
+        #   none]
+        time_str = input('How long have you got?')
+        wpm_str = input('How many words per minute can you read?')
+        time = int(time_str)
+        wpm = int(wpm_str)
         new_list = sorted([entry for entry in self.entries if entry.reading_time(wpm) <= time], key=lambda entry: entry.reading_time(wpm), reverse=True)
-
         if new_list == []:
-            raise Exception("Not enough time to read any entries")
-        return new_list[0].format()
+            print("Not enough time to read any entries")
+        print(new_list[0].format())
