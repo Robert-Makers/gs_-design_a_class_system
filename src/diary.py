@@ -21,7 +21,7 @@ class Diary():
         self.entries = []
         self.contacts = Contacts()
 
-    def add_diary_entry(self, entry):
+    def add_diary_entry(self):
         # Parameters
         #   entry: DiaryEntry()
         # Returns
@@ -29,7 +29,10 @@ class Diary():
         # Side effects
         #   adds a new entry to the list of entries
         #   if there is a phone number in the contents add it to contacts.contact_list
-        print('Added entry')
+        title = input('Whats the title of this entry?')
+        contents = input('Start writing your diary.')
+
+        entry = DiaryEntry(title, contents)
         if entry.get_phone_number() != None:
             self.contacts.contact_list.append(entry.get_phone_number())
         self.entries.append(entry)
