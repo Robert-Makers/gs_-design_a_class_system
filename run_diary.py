@@ -11,6 +11,8 @@ def main():
         selection = input('Type a number: ')
         print(selection)
         if selection == '1':
-            diary.add_diary_entry(DiaryEntry('title', 'contents'))
+            diary.add_diary_entry()
         elif selection == '5':
             break
+
+main()
