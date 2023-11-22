@@ -29,7 +29,7 @@ class Diary():
         # Side effects
         #   adds a new entry to the list of entries
         #   if there is a phone number in the contents add it to contacts.contact_list
-        print('Add a new entry')
+        print('Added entry')
         if entry.get_phone_number() != None:
             self.contacts.contact_list.append(entry.get_phone_number())
         self.entries.append(entry)
