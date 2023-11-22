@@ -11,8 +11,15 @@ def main():
         selection = input('Type a number: ')
         print(selection)
         if selection == '1':
+            # print('adding entry')
             diary.add_diary_entry()
+        if selection == '2':
+            # print('getting entries')
+            diary.retrieve_entries()
+        if selection == '3':
+            diary.select_entry_for_time()
         elif selection == '5':
             break
 
-main()
+if __name__ == '__main__':
+    main()
