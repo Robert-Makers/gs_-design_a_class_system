@@ -91,6 +91,7 @@ def test_add_task_and_show_tasks():
         main()
         sys.stdout = old_stdout
     captured_text = captured_output.getvalue()
+    print(captured_text)
     assert 'Walk the dog' in captured_text
 
 '''
