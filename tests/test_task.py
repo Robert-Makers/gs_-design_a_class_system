@@ -2,15 +2,6 @@ import pytest #type: ignore
 from src.task import *
 
 """
-When creating a task, if task string is empty, raise an error
-"""
-
-def test_empty_task_creates_error():
-    with pytest.raises(Exception) as e:
-        task = Task("")
-    assert str(e.value) == "Task string should not be empty"
-
-"""
 When creaing a task, confirm task is set to the string provided
 """
 def test_task_has_been_set():

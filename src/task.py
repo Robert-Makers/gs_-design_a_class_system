@@ -4,8 +4,6 @@ class Task():
     #   complete: Bool
 
     def __init__(self, task):
-        if task == "":
-            raise Exception("Task string should not be empty")
         self.text = task
         self.complete = False
         # Parameters

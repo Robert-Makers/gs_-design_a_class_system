@@ -64,3 +64,45 @@ def test_add_entries_and_retrieve_based_on_time():
         sys.stdout = old_stdout
     captured_text = captured_output.getvalue()
     assert 'Day Three' in captured_text
+
+'''
+When I run_diary I can launch the task tracker
+I see an new menu of options for tasks
+'''
+def test_task_menu_options_shown():
+    captured_output = io.StringIO()
+    with patch('builtins.input', side_effect=['4', '5', '5']):
+        old_stdout = sys.stdout
+        sys.stdout = captured_output
+        main()
+        sys.stdout = old_stdout
+    captured_text = captured_output.getvalue()
+    assert 'Add a new task' in captured_text
+
+'''
+When I run_diary I can launch the task tracker
+I can add a new task and see a list of incomplete tasks
+'''
+def test_add_task_and_show_tasks():
+    captured_output = io.StringIO()
+    with patch('builtins.input', side_effect=['4', '1', 'Walk the dog', '2', '5', '5']):
+        old_stdout = sys.stdout
+        sys.stdout = captured_output
+        main()
+        sys.stdout = old_stdout
+    captured_text = captured_output.getvalue()
+    assert 'Walk the dog' in captured_text
+
+'''
+When I run_diary I can launch the task tracker
+I can add a new task, complete it and see a list of completed tasks
+'''
+def test_add_task_complete_and_show_completed():
+    captured_output = io.StringIO()
+    with patch('builtins.input', side_effect=['4', '1', 'Walk the dog', '4', 'Walk the dog', '3', '5', '5']):
+        old_stdout = sys.stdout
+        sys.stdout = captured_output
+        main()
+        sys.stdout = old_stdout
+    captured_text = captured_output.getvalue()
+    assert 'Walk the dog' in captured_text

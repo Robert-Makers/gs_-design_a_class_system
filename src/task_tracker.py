@@ -1,3 +1,5 @@
+from src.task import Task
+
 class TaskTracker:
     # user facing properties
     # none
@@ -11,8 +13,9 @@ class TaskTracker:
         # Side effects
         #   sets the task list to empty
 
-    def add_task(self, task):
-        self.task_list.append(task)
+    def add_task(self):
+        task_text = input("What's the task?")
+        self.task_list.append(Task(task_text))
         # Parameters
         #   task: Task
         # Returns
@@ -22,7 +25,7 @@ class TaskTracker:
 
     def get_incomplete(self):
         incomplete_list = [task.text for task in self.task_list if not task.complete]
-        return incomplete_list
+        print(incomplete_list)
         # Parameters
         #   none
         # Returns
@@ -32,16 +35,16 @@ class TaskTracker:
 
     def get_complete(self):
         complete_list = [task.text for task in self.task_list if task.complete]
-        return complete_list
+        print(complete_list)
         # Parameters
         #   none
         # Returns
         #   a list of tasks where task.complete == True
         # Side effects
         #  none
-        pass
 
-    def complete_task(self, task_text):
+    def complete_task(self):
+        task_text = input("What task have you finished?")
         task_to_complete = [task for task in self.task_list if task_text == task.text]
         task_to_complete[0].complete_task()
         # Parameters
